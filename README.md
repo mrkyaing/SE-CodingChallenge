@@ -15,20 +15,21 @@
 ## Method 1 **OldPhonePad(string input)**
 - This method do the mapping process from the inputed (digital numbers)  to string (english alphabet)
 ```
- public static string OldPhonePad(string input) {
- //get input from the user's keyboard
-input = input.Replace("#", "");
-string results = null;
-if (string.IsNullOrEmpty(input))
+public string OldPhonePad(string input)
 {
-    return results;
+    input = input.Replace("#", "");
+    string? results = null;
+
+    if (string.IsNullOrEmpty(input))
+    {
+        return results;
+    }
+    //generate words according to input digits.
+    results = GenerateWords(input);
+    return results.ToUpper();
 }
-//generate words according to input digits.
-results = GenerateWords(input);
-return results.ToUpper();
- }
 ```
-- https://github.com/mrkyaing/codingchallenge/blob/main/CodingChallengeMain/EncodingUtility.cs
+- https://github.com/mrkyaing/SE-CodingChallenge/blob/main/CodingChallenge.Main/Lib/IOldPhonePadConvertor.cs
 ## Method 2 **GenerateWords(string digits)**
 - This method is encapsuleted and generate the alphabest from digits according to keypad dictionary value(s). 
 ```
@@ -36,7 +37,7 @@ private static string GenerateWords(string digits){
 //DO WORD GENERATE PROCESS 
 }
 ```
-- https://github.com/mrkyaing/codingchallenge/blob/main/CodingChallengeMain/EncodingUtility.cs
+- https://github.com/mrkyaing/SE-CodingChallenge/blob/main/CodingChallenge.Main/Lib/IOldPhonePadConvertor.cs
 # Examples output(s):
 - OldPhonePad(“33#”) => output: E
 - OldPhonePad(“227*#”) => output: B
@@ -46,44 +47,51 @@ private static string GenerateWords(string digits){
 # Output screen Result(s)
 ![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/e29eeea5-bcba-4dad-bbdb-cf9374046ad3)
 
-# Unit Test Result by using xUnit 
+# Unit Test Result by using xUnit & Moq LIB
 - xUnit Test used for unit testing for generate digit(s) to english alphabet .
 ```
 [Fact]
-        public void ReturnEResultOldPhonePad()
-        {
-            // Arrange
-            string inputDigits = "33#";
-            // Act
-            string expectedResult = "E";
-            // Assert
-            var result = EncodingUtility.OldPhonePad(inputDigits);
-            Assert.Equal(expectedResult, result); // Check if the result is as expected.
-        }
+public void ReturnEResultOldPhonePad()
+{
+    // Arrange
+    string inputDigits = "33#";
+    string expectedResult = "E";
+    _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+    // Act
+    var result = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
+
+    // Assert
+    Assert.Equal(expectedResult, result);
+}
 ```
-- https://github.com/mrkyaing/codingchallenge/blob/main/CodingChallengeUnitTest/KeyPhonePadUnitTest.cs
-![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/3dca1a94-7943-4569-a3c9-0e025882dd60)
+- https://github.com/mrkyaing/SE-CodingChallenge/blob/main/CodingChallenge.UnitTest/OldPhonePadUnitTest.cs
+  ![image](https://github.com/user-attachments/assets/01ac2d9c-4874-4b4f-aa8f-02b31f4c1f3d)
 
 # Software Requirement
 - Framework :.Net Core 8.0
 - Tools     :Visual Studio 2022 IDE or Visual Studio Code
 - Language  : C#
 - Main Program Run
-![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/bd695e33-64e9-4d73-846a-d3ac4aca4cf8)
+![image](https://github.com/user-attachments/assets/e006b977-87ef-4543-be64-dac2f9b572d0)
 - Unit Test Project run
-![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/fa46882e-6cec-4276-83ee-b9ef6df3e72b)
-
+![image](https://github.com/user-attachments/assets/43b2b648-0a57-482d-bcf5-8875f99a1a8a)
 # How to Get Started with the OldPhonePad encoding from digits to english alphabet  as C# Library 
 - If you can use this OldPhonePad(string input) in your project,you can reference this DLL(Dynamic Link Library) file in your project .
-![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/8cfba5be-06d2-4b7e-a0bc-4694e4ed32fd)
-- And then by invoking  this static method EncodingUtility.OldPhonePad(yourInputs) .
+![dll](https://github.com/user-attachments/assets/12a95342-f433-4584-b798-4e0e9dad1efa)
+
+- And then by invoking  with the constructor depedency injection apporach.
 - by importing the Library as using namespace
 ```
-using CodingChallenge;
+using CodingChallenge.Main.Lib;
 ```
-- by fully qualified namespaces 
+
 ```
-CodingChallenge.EncodingUtility(yourInputs);
+private readonly Mock<IOldPhonePadConvertor> _mockOldPhonePadConvertor;
+public OldPhonePadUnitTest()
+{
+    _mockOldPhonePadConvertor = new Mock<IOldPhonePadConvertor>();
+}
 ```
 - Method invoking from the Client Program 
 ![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/be95820e-0163-4d6b-a0db-978a207b37cf)
