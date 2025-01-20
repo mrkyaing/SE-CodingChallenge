@@ -47,20 +47,23 @@ private static string GenerateWords(string digits){
 # Output screen Result(s)
 ![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/e29eeea5-bcba-4dad-bbdb-cf9374046ad3)
 
-# Unit Test Result by using xUnit 
+# Unit Test Result by using xUnit & Moq LIB
 - xUnit Test used for unit testing for generate digit(s) to english alphabet .
 ```
 [Fact]
-        public void ReturnEResultOldPhonePad()
-        {
-            // Arrange
-            string inputDigits = "33#";
-            // Act
-            string expectedResult = "E";
-            // Assert
-            var result = EncodingUtility.OldPhonePad(inputDigits);
-            Assert.Equal(expectedResult, result); // Check if the result is as expected.
-        }
+public void ReturnEResultOldPhonePad()
+{
+    // Arrange
+    string inputDigits = "33#";
+    string expectedResult = "E";
+    _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+    // Act
+    var result = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
+
+    // Assert
+    Assert.Equal(expectedResult, result);
+}
 ```
 - https://github.com/mrkyaing/codingchallenge/blob/main/CodingChallengeUnitTest/KeyPhonePadUnitTest.cs
 ![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/3dca1a94-7943-4569-a3c9-0e025882dd60)
