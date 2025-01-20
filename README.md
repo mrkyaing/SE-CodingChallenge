@@ -15,18 +15,19 @@
 ## Method 1 **OldPhonePad(string input)**
 - This method do the mapping process from the inputed (digital numbers)  to string (english alphabet)
 ```
- public static string OldPhonePad(string input) {
- //get input from the user's keyboard
-input = input.Replace("#", "");
-string results = null;
-if (string.IsNullOrEmpty(input))
+public string OldPhonePad(string input)
 {
-    return results;
+    input = input.Replace("#", "");
+    string? results = null;
+
+    if (string.IsNullOrEmpty(input))
+    {
+        return results;
+    }
+    //generate words according to input digits.
+    results = GenerateWords(input);
+    return results.ToUpper();
 }
-//generate words according to input digits.
-results = GenerateWords(input);
-return results.ToUpper();
- }
 ```
 - https://github.com/mrkyaing/codingchallenge/blob/main/CodingChallengeMain/EncodingUtility.cs
 ## Method 2 **GenerateWords(string digits)**
