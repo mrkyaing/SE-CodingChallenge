@@ -80,14 +80,18 @@ public void ReturnEResultOldPhonePad()
 - If you can use this OldPhonePad(string input) in your project,you can reference this DLL(Dynamic Link Library) file in your project .
 ![dll](https://github.com/user-attachments/assets/12a95342-f433-4584-b798-4e0e9dad1efa)
 
-- And then by invoking  this static method EncodingUtility.OldPhonePad(yourInputs) .
+- And then by invoking  with the constructor depedency injection apporach.
 - by importing the Library as using namespace
 ```
-using CodingChallenge;
+using CodingChallenge.Main.Lib;
 ```
-- by fully qualified namespaces 
+
 ```
-CodingChallenge.EncodingUtility(yourInputs);
+private readonly Mock<IOldPhonePadConvertor> _mockOldPhonePadConvertor;
+public OldPhonePadUnitTest()
+{
+    _mockOldPhonePadConvertor = new Mock<IOldPhonePadConvertor>();
+}
 ```
 - Method invoking from the Client Program 
 ![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/be95820e-0163-4d6b-a0db-978a207b37cf)
