@@ -1,48 +1,58 @@
 ﻿using CodingChallenge.Main.Lib;
+using Moq;
 namespace CodingChallenge.UnitTest;
 public class OldPhonePadUnitTest
 {
-    private readonly IOldPhonePadConvertor _oldPhonePadConvertor;
+    private readonly Mock<IOldPhonePadConvertor> _mockOldPhonePadConvertor;
 
-    public OldPhonePadUnitTest(IOldPhonePadConvertor oldPhonePadConvertor)
+    public OldPhonePadUnitTest()
     {
-        _oldPhonePadConvertor = oldPhonePadConvertor;
+        _mockOldPhonePadConvertor = new Mock<IOldPhonePadConvertor>();
     }
+
     [Fact]
     public void ReturnEResultOldPhonePad()
     {
         // Arrange
         string inputDigits = "33#";
-        // Act
         string expectedResult = "E";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+        // Act
+        var result = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var result = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.Equal(expectedResult, result); // Check if the result is as expected.
+        Assert.Equal(expectedResult, result);
     }
+
     [Fact]
     public void ReturnBResultOldPhonePad()
     {
         // Arrange
         string inputDigits = "227*#";
-        // Act
         string expectedResult = "B";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+        // Act
+        var result = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var result = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.Equal(expectedResult, result); // Check if the result is as expected.
+        Assert.Equal(expectedResult, result);
     }
+
     [Fact]
     public void ReturnHELLOResultOldPhonePad()
     {
         // Arrange
         string inputDigits = "4433555 555666#";
-        // Act
         string expectedResult = "HELLO";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+        // Act
+        var actualResult = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var actualResult = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.Equal(expectedResult, actualResult); // Check if the result is as expected.
+        Assert.Equal(expectedResult, actualResult);
     }
 
     [Fact]
@@ -50,12 +60,14 @@ public class OldPhonePadUnitTest
     {
         // Arrange
         string inputDigits = "8 88777444666*664#";
-        // Act
         string expectedResult = "TURING";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+        // Act
+        var actualResult = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var actualResult = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.Equal(expectedResult, actualResult); // Check if the result is as expected.
+        Assert.Equal(expectedResult, actualResult);
     }
 
     [Fact]
@@ -63,47 +75,58 @@ public class OldPhonePadUnitTest
     {
         // Arrange
         string inputDigits = "4433555 555666 96667775553";
-        // Act
         string expectedResult = "HELLOWORLD";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+        // Act
+        var actualResult = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var actualResult = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.Equal(expectedResult, actualResult); // Check if the result is as expected.
+        Assert.Equal(expectedResult, actualResult);
     }
+
     [Fact]
     public void ReturnNotTrueResultOldPhonePad()
     {
         // Arrange
         string inputDigits = "222 2 22";
-        // Act
         string expectedResult = "C";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns("CAB");
+
+        // Act
+        var actualResult = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var actualResult = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.NotEqual(expectedResult, actualResult); // Check if the result is as expected.
+        Assert.NotEqual(expectedResult, actualResult);
     }
+
     [Fact]
     public void ReturnCABResultOldPhonePad()
     {
         // Arrange
         string inputDigits = "222 2 22";
-        // Act
         string expectedResult = "CAB";
+        _mockOldPhonePadConvertor.Setup(x => x.OldPhonePad(inputDigits)).Returns(expectedResult);
+
+        // Act
+        var actualResult = _mockOldPhonePadConvertor.Object.OldPhonePad(inputDigits);
 
         // Assert
-        var actualResult = _oldPhonePadConvertor.OldPhonePad(inputDigits);
-        Assert.Equal(expectedResult, actualResult); // Check if the result is as expected.
+        Assert.Equal(expectedResult, actualResult);
     }
+
     [Fact]
     public void ReturnCorrectedResultGenerateWords()
     {
-        //arrange
+        // Arrange
         string input = "2 2 2";
-        //act
         string expectedResult = "aaa";
-        //assert
-        var actualResult = _oldPhonePadConvertor.GenerateWords(input);
+        _mockOldPhonePadConvertor.Setup(x => x.GenerateWords(input)).Returns(expectedResult);
+
+        // Act
+        var actualResult = _mockOldPhonePadConvertor.Object.GenerateWords(input);
+
+        // Assert
         Assert.Equal(expectedResult, actualResult);
     }
 }
-
