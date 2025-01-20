@@ -65,7 +65,7 @@ public void ReturnEResultOldPhonePad()
     Assert.Equal(expectedResult, result);
 }
 ```
-- https://github.com/mrkyaing/codingchallenge/blob/main/CodingChallengeUnitTest/KeyPhonePadUnitTest.cs
+- https://github.com/mrkyaing/SE-CodingChallenge/blob/main/CodingChallenge.UnitTest/OldPhonePadUnitTest.cs
 ![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/3dca1a94-7943-4569-a3c9-0e025882dd60)
 
 # Software Requirement
