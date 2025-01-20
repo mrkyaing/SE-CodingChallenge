@@ -1,8 +1,7 @@
-﻿namespace CodingChallenge.Main.Lib
+﻿namespace CodingChallenge.Main.Lib;
+public interface IOldPhonePadConvertor
 {
-    internal interface IOldPhonePadConvertor
-    {
-        string OldPhonePad(string input);
-        string GenerateWords(string digits);
-    }
+    string OldPhonePad(string input);
+    string GenerateWords(string digits);
 }
+
