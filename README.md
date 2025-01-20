@@ -94,12 +94,4 @@ public OldPhonePadUnitTest()
 }
 ```
 - Method invoking from the Client Program 
-![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/be95820e-0163-4d6b-a0db-978a207b37cf)
-
-
-
-
-
-
-
-
+![ref](https://github.com/user-attachments/assets/b950dc94-2c26-4271-b20f-8b1566110842)
