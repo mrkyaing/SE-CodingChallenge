@@ -66,7 +66,8 @@ public void ReturnEResultOldPhonePad()
 }
 ```
 - https://github.com/mrkyaing/SE-CodingChallenge/blob/main/CodingChallenge.UnitTest/OldPhonePadUnitTest.cs
-![image](https://github.com/mrkyaing/codingchallenge/assets/9696016/3dca1a94-7943-4569-a3c9-0e025882dd60)
+  ![image](https://github.com/user-attachments/assets/01ac2d9c-4874-4b4f-aa8f-02b31f4c1f3d)
+
 
 # Software Requirement
 - Framework :.Net Core 8.0
